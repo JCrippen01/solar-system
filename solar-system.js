@@ -1,5 +1,5 @@
 
-const solarSystem = [
+const celestialBodies = [
     {
         id: 1,
         name: "Sun",
@@ -26,25 +26,29 @@ const solarSystem = [
     }
 ]
 
-for (const planet of solarSystem) {
-    if (planet.star === false) {
-        
-        console.log(`${planet.name} is a planet and not a star`)
-    } else {
-        console.log(`${planet.name} is a star and not a planet`)
-    }
-}
+
 
 const mars = {
-        id: 4,
-        name: "Mars",
-        star: false,
-        numberOfMoons: 2,
-        distanceFromSun: 230,
-        mass: 6.39e+23
+    id: 4,
+    name: "Mars",
+    star: false,
+    numberOfMoons: 2,
+    distanceFromSun: 230,
+    mass: 6.39e+23
 }
+celestialBodies.push(mars)
 
-solarSystem.push(mars)
+
+const createPlanet = (celestialBodiesObject) => {
+    // adding `id` property to note object //
+    const lastIndex = celestialBodies.length - 1
+    const currentLastCelestialBodiesObject = celestialBodies[lastIndex]
+    const maxId = currentLastCelestialBodiesObject.id
+    const idForNewCelestialBodiesObject = maxId + 1
+
+    celestialBodiesObject.id = idForNewCelestialBodiesObject
+    celestialBodies.push(celestialBodiesObject)
+}
 
 const sirius = {
     name: "Sirius",
@@ -54,17 +58,18 @@ const sirius = {
     mass: 2.02
 }
 
-const createPlanet = (solarSystemObject) => {
-    // adding `id` property to note object //
-    const lastIndex = solarSystem.length - 1
-    const currentLastSolarSystemObject = solarSystem[lastIndex]
-    const maxId = currentLastSolarSystemObject.id
-    const idForNewSolarSystemObject = maxId + 1
-
-    solarSystemObject.id = idForNewSolarSystemObject
-    solarSystem.push(solarSystemObject)
-   
-}
 createPlanet(sirius)
+createPlanet({
+    name: "Jupiter",
+    star: false,
+    numberOfMoons: 79,
+    distanceFromSun: 410,
+    mass: 14.39e+28
+})
 
-console.log(solarSystem)
+/*
+    1. Calculate total number of moons in solar system with a function
+    2. Function should return total sum
+    3. Talk about different scopes
+*/
+
